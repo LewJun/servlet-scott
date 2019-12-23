@@ -6,9 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
+
 <!doctype html>
 <html>
 <head>
+    <%@include file="/WEB-INF/_inc/_inc_base.jsp" %>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -20,8 +22,8 @@
 <div class="w3-container">
     <input type="text" class="w3-input" placeholder="KING"
            id="input-keywords">
-    <a class="w3-btn w3-green" onclick="search()">Search</a>
-    <a href="${contextPath}/api/emp/create"
+    <a class="w3-btn w3-green" onclick="queryByKeywords()">Search</a>
+    <a href="api/emp/create"
        class="w3-btn w3-blue w3-margin">Create</a>
     <h1>Emp List</h1>
     <table class="w3-table-all w3-hoverable" id="emp-list">
@@ -42,26 +44,26 @@
             <td>{{hiredate}}</td>
             <td>{{deptno}}</td>
             <td>
-                <a class="w3-button w3-red"
-                   href="${contextPath}/api/emp/delete?id={{id}}">del
+                <a class="w3-button w3-red" onclick="remove('{{id}}')"
+                   href="javascript:;">del
                 </a>
                 <a class="w3-button w3-blue"
-                   href="${contextPath}/api/emp/edit?id={{id}}">edit</a>
+                   href="api/emp/edit?id={{id}}">edit</a>
                 <a class="w3-button w3-yellow"
-                   href="${contextPath}/api/emp/detail?id={{id}}">detail</a>
+                   href="api/emp/detail?id={{id}}">detail</a>
             </td>
         </tr>
     </table>
     <%@include file="/WEB-INF/_inc/_inc_js.jsp" %>
 </div>
 <script>
-    search();
+    queryByKeywords();
 
     /**
      * 根据关键字搜索
      */
-    function search() {
-        w3.getHttpObject("${contextPath}/api/emp/search?keywords=" +
+    function queryByKeywords() {
+        w3.getHttpObject("api/emp/search?keywords=" +
             document.getElementById("input-keywords").value,
             function (apiResult) {
                 var code = apiResult.code;
@@ -73,6 +75,27 @@
                     w3.addClass("#emp-data", "w3-hide");
                 }
             });
+    }
+</script>
+
+<script src="<%=basePath%>/static/plugins/ajax.js"></script>
+<script>
+    function remove(id) {
+        var ajax = new Ajax();
+        ajax.send({
+            method: "GET",
+            url: "api/emp/delete",
+            resType: "json",
+            data: {
+                id: id
+            },
+            success: function (ret) {
+                console.log(ret);
+                if (ret.code === 0) {
+                    queryByKeywords();
+                }
+            }
+        });
     }
 </script>
 </body>
