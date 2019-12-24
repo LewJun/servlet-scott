@@ -38,7 +38,6 @@ public class EmpServiceImpl implements EmpService {
 
   @Override
   public Collection<Emp> getAll() {
-    LOGGER.info("empRepository={}", empRepository);
     return empRepository.getAll();
   }
 
