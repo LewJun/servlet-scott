@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,32 +32,19 @@
         <div>
             deptno: <input class="w3-input" type="text" name="deptno"/>
         </div>
-        <a onclick="edit()" href="javascript:void(0);"
+        <a onclick="create()" href="javascript:void(0);"
            class="w3-button w3-blue w3-center w3-margin">Submit</a>
     </form>
 </div>
 <%@include file="/WEB-INF/_inc/_inc_js.jsp" %>
+<script src="<%=basePath%>/static/plugins/jq/1.3.2/jquery.min.js"></script>
 <script>
-    search();
-
-    function search() {
-        w3.getHttpObject("api/emp/search/id?id=${id}",
-            function (apiResult) {
-                w3.displayObject("frm-emp-detail", apiResult.data);
-            });
-    }
-</script>
-
-<script src="<%=basePath%>/static/plugins/ajax.js"></script>
-<script src="<%=basePath%>/static/plugins/formser.js"></script>
-<script>
-    function edit() {
-        var ajax = new Ajax();
-        ajax.send({
-            method: "POST",
+    function create() {
+        $.ajax({
+            type: "POST",
             url: "api/emp/create",
-            resType: "json",
-            data: formser(document.getElementById("frm-emp-detail")),
+            data: $("#frm-emp-detail").serialize(),
+            dataType: "json",
             success: function (ret) {
                 console.log(ret);
                 if (ret.code === 0) {

@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -52,16 +51,14 @@
     }
 </script>
 
-<script src="<%=basePath%>/static/plugins/ajax.js"></script>
-<script src="<%=basePath%>/static/plugins/formser.js"></script>
+<script src="<%=basePath%>/static/plugins/jq/1.3.2/jquery.min.js"></script>
 <script>
     function edit() {
-        var ajax = new Ajax();
-        ajax.send({
-            method: "POST",
+        $.ajax({
+            type: "POST",
             url: "api/emp/edit",
-            resType: "json",
-            data: formser(document.getElementById("frm-emp-detail")),
+            data: $("#frm-emp-detail").serialize(),
+            dataType: "json",
             success: function (ret) {
                 console.log(ret);
                 if (ret.code === 0) {

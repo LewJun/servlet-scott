@@ -19,12 +19,12 @@
     <title>Emp index</title>
 </head>
 <body>
-<div class="w3-container">
+<div class="w3-container w3-margin-top">
     <input type="text" class="w3-input" placeholder="KING"
            id="input-keywords">
     <a class="w3-btn w3-green" onclick="queryByKeywords()">Search</a>
-    <a href="api/emp/create"
-       class="w3-btn w3-blue w3-margin">Create</a>
+    <a href="api/emp/create" class="w3-btn w3-blue w3-margin">Create</a>
+    <a href="api/user/logout" class="w3-btn w3-red w3-margin">Logout</a>
     <h1>Emp List</h1>
     <table class="w3-table-all w3-hoverable" id="emp-list">
         <tr class="w3-green">
@@ -54,8 +54,8 @@
             </td>
         </tr>
     </table>
-    <%@include file="/WEB-INF/_inc/_inc_js.jsp" %>
 </div>
+<%@include file="/WEB-INF/_inc/_inc_js.jsp" %>
 <script>
     queryByKeywords();
 
@@ -78,21 +78,22 @@
     }
 </script>
 
-<script src="<%=basePath%>/static/plugins/ajax.js"></script>
+<script src="<%=basePath%>/static/plugins/jq/1.3.2/jquery.min.js"></script>
 <script>
     function remove(id) {
-        var ajax = new Ajax();
-        ajax.send({
-            method: "GET",
+        $.ajax({
+            type: "GET",
             url: "api/emp/delete",
-            resType: "json",
             data: {
                 id: id
             },
+            dataType: "json",
             success: function (ret) {
                 console.log(ret);
                 if (ret.code === 0) {
                     queryByKeywords();
+                } else {
+                    alert(ret.msg);
                 }
             }
         });
