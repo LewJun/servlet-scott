@@ -7,10 +7,17 @@ public class ApiResult<T> {
 
   public ApiResult() {}
 
+  public ApiResult(int code, String msg) {
+    this.code = code;
+    this.msg = msg;
+  }
+
   public ApiResult(T data) {
     this();
     this.data = data;
-    if (data == null) err();
+    if (data == null) {
+      err();
+    }
   }
 
   private void err() {
