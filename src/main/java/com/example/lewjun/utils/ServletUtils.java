@@ -6,7 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +32,7 @@ public class ServletUtils {
     writer.flush();
   }
 
-  public static void forward(HttpServletRequest req, HttpServletResponse resp, String path)
+  public static void forward(ServletRequest req, ServletResponse resp, String path)
       throws ServletException, IOException {
     req.getRequestDispatcher(buildPath(path)).forward(req, resp);
   }
