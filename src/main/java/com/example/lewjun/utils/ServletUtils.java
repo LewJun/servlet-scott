@@ -24,10 +24,19 @@ public class ServletUtils {
 
   public static void toJson(HttpServletResponse resp, ApiResult<Object> apiResult)
       throws IOException {
-    String ret = GsonUtils.getGson(false, DateFormatUtils.ISO_DATE_FORMAT).toJson(apiResult);
+    String ret =
+            GsonUtils.getGson(false, DateFormatUtils.ISO_DATE_FORMAT).toJson(apiResult);
     LOGGER.info("{}", ret);
     resp.setContentType("application/json;charset=utf-8");
     PrintWriter writer = resp.getWriter();
+    int code = apiResult.getCode();
+
+    // 在200到600外使用200作为状态码
+    if (code >= 200 && code < 600) {
+      resp.setStatus(code);
+    } else {
+      resp.setStatus(200);
+    }
     writer.println(ret);
     writer.flush();
   }
