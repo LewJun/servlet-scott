@@ -37,7 +37,6 @@
     </form>
 </div>
 <%@include file="/WEB-INF/_inc/_inc_js.jsp" %>
-<script src="<%=basePath%>/static/plugins/jq/1.3.2/jquery.min.js"></script>
 <script>
     function create() {
         $.ajax({
@@ -46,9 +45,10 @@
             data: $("#frm-emp-detail").serialize(),
             dataType: "json",
             success: function (ret) {
-                console.log(ret);
                 if (ret.code === 0) {
                     window.location.href = "api/emp/index";
+                } else {
+                    alert(ret.msg)
                 }
             }
         });

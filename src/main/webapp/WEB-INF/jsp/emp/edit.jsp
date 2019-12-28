@@ -49,10 +49,7 @@
                 w3.displayObject("frm-emp-detail", apiResult.data);
             });
     }
-</script>
 
-<script src="<%=basePath%>/static/plugins/jq/1.3.2/jquery.min.js"></script>
-<script>
     function edit() {
         $.ajax({
             type: "POST",

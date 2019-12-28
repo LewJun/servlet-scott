@@ -45,7 +45,7 @@
             <td>{{deptno}}</td>
             <td>
                 <a class="w3-button w3-red" onclick="remove('{{id}}')"
-                   href="javascript:;">del
+                   href="javascript:void(0);">del
                 </a>
                 <a class="w3-button w3-blue"
                    href="api/emp/edit?id={{id}}">edit</a>
@@ -66,8 +66,8 @@
         w3.getHttpObject("api/emp/search?keywords=" +
             document.getElementById("input-keywords").value,
             function (apiResult) {
-                var code = apiResult.code;
-                var data = apiResult.data;
+                const code = apiResult.code;
+                const data = apiResult.data;
                 if (code >= 0 && data && data.length > 0) {
                     w3.displayObject("emp-list", apiResult);
                     w3.removeClass("#emp-data", "w3-hide");
@@ -76,10 +76,7 @@
                 }
             });
     }
-</script>
 
-<script src="<%=basePath%>/static/plugins/jq/1.3.2/jquery.min.js"></script>
-<script>
     function remove(id) {
         $.ajax({
             type: "GET",
@@ -89,7 +86,6 @@
             },
             dataType: "json",
             success: function (ret) {
-                console.log(ret);
                 if (ret.code === 0) {
                     queryByKeywords();
                 } else {
