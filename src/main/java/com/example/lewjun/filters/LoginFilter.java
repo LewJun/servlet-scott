@@ -18,7 +18,8 @@ import java.util.List;
 @WebFilter(
     urlPatterns = "/api/*",
     initParams = {
-      @WebInitParam(name = "exclusionUrls", value = "/api/user" + "/login," + "/api/user/logout")
+      @WebInitParam(name = "exclusionUrls", value = "/api/user/login," +
+              "/api/user/logout")
     })
 public class LoginFilter implements Filter {
   private final List<String> exclusions = new ArrayList<>();
@@ -39,8 +40,9 @@ public class LoginFilter implements Filter {
     if (!exclusions.contains(servletPath)) {
       HttpSession session = req.getSession(false);
       if (session == null || session.getAttribute("loginUser") == null) {
+        // 判断是否为ajax请求
         if (req.getHeader("x-requested-with") != null) {
-          ServletUtils.toJson(resp, new ApiResult<>(-1, "login err"));
+          ServletUtils.toJson(resp, new ApiResult<>(403, "登录过期，请重新登录。"));
         } else {
           ServletUtils.forward(req, resp, "/user/login");
         }
