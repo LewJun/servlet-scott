@@ -1,1 +1,1 @@
-<link rel="stylesheet" href="<%=basePath%>/static/plugins/w3/w3.css">
+<link rel="stylesheet" href="static/plugins/w3/w3.css">
