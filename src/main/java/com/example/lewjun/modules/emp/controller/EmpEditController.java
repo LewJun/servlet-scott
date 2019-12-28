@@ -33,7 +33,7 @@ public class EmpEditController extends BaseController {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    int id = Integer.valueOf(req.getParameter("id"));
+    int id = Integer.parseInt(req.getParameter("id"));
     Emp emp = new Emp();
     emp.setId(id);
     emp.setEname(req.getParameter("ename"));

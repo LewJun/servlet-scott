@@ -30,9 +30,11 @@ public class EmpSearchController extends BaseController {
     String keywords = req.getParameter("keywords");
     LOGGER.info("keywords = {}", keywords);
     Collection<Emp> empCollection;
-    if (StringUtils.isBlank(keywords)) empCollection = empService.getAll();
-    else
-        empCollection = empService.findByName(keywords);
+    if (StringUtils.isBlank(keywords)) {
+      empCollection = empService.getAll();
+    } else {
+      empCollection = empService.findByName(keywords);
+    }
 
     ServletUtils.toJson(resp, new ApiResult<>(empCollection));
   }

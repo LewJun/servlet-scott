@@ -36,7 +36,7 @@ public class EmpCreateController extends BaseController {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     Emp emp = new Emp();
-    emp.setId(Integer.valueOf(req.getParameter("id")));
+    emp.setId(Integer.parseInt(req.getParameter("id")));
     emp.setEname(req.getParameter("ename"));
     emp.setJob(req.getParameter("job"));
     emp.setMgr(Integer.valueOf(req.getParameter("mgr")));

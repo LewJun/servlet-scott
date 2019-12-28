@@ -23,7 +23,7 @@ public class EmpSearchByIdController extends BaseController {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    int id = Integer.valueOf(req.getParameter("id"));
+    int id = Integer.parseInt(req.getParameter("id"));
     LOGGER.info("id = {}", id);
     ServletUtils.toJson(resp, new ApiResult<>(empService.findById(id)));
   }
