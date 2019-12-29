@@ -1,6 +1,9 @@
 package com.example.lewjun.base;
 
-public abstract class BaseModel<T> {
+import java.io.Serializable;
+
+public abstract class BaseModel<T> implements Serializable {
+  private static final long serialVersionUID = 4570303070892228190L;
   private T id;
 
   protected BaseModel() {}
