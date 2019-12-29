@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/** @author huiye */
 @WebServlet("/api/emp/detail")
 public class EmpDetailController extends BaseController {
   private static final long serialVersionUID = -6617700568929916855L;

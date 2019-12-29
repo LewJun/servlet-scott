@@ -1,6 +1,6 @@
 package com.example.lewjun.modules.user.controller;
 
-import com.example.lewjun.base.ApiResult;
+import com.example.lewjun.base.EnumApiResultCode;
 import com.example.lewjun.utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -47,9 +47,9 @@ public class UserLoginController extends HttpServlet {
     if ("admin".equals(username) && "123456".equals(password)) {
       HttpSession session = req.getSession();
       session.setAttribute("loginUser", username);
-      ServletUtils.toJson(resp);
+      ServletUtils.success(resp);
     } else {
-      ServletUtils.toJson(resp, new ApiResult<>(-1, "login fail"));
+      ServletUtils.failure(resp, EnumApiResultCode.USER_LOGIN_FAIL);
     }
   }
 }

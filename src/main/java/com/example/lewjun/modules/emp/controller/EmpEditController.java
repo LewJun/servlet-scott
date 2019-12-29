@@ -1,6 +1,7 @@
 package com.example.lewjun.modules.emp.controller;
 
 import com.example.lewjun.base.BaseController;
+import com.example.lewjun.base.EnumApiResultCode;
 import com.example.lewjun.modules.emp.model.Emp;
 import com.example.lewjun.modules.emp.service.EmpService;
 import com.example.lewjun.modules.emp.service.EmpServiceImpl;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/** @author huiye */
 @WebServlet("/api/emp/edit")
 public class EmpEditController extends BaseController {
   private static final long serialVersionUID = -3246158044244262948L;
@@ -43,10 +45,12 @@ public class EmpEditController extends BaseController {
       emp.setHiredate(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("hiredate")));
     } catch (ParseException e) {
       LOGGER.error("error", e);
+      ServletUtils.failure(resp, EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
+      return;
     }
     emp.setDeptno(Integer.valueOf(req.getParameter("deptno")));
     empService.update(emp);
 
-    ServletUtils.toJson(resp);
+    ServletUtils.success(resp);
   }
 }

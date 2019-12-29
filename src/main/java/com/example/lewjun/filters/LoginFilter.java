@@ -1,6 +1,6 @@
 package com.example.lewjun.filters;
 
-import com.example.lewjun.base.ApiResult;
+import com.example.lewjun.base.EnumApiResultCode;
 import com.example.lewjun.utils.ServletUtils;
 
 import javax.servlet.*;
@@ -18,8 +18,7 @@ import java.util.List;
 @WebFilter(
     urlPatterns = "/api/*",
     initParams = {
-      @WebInitParam(name = "exclusionUrls", value = "/api/user/login," +
-              "/api/user/logout")
+      @WebInitParam(name = "exclusionUrls", value = "/api/user/login," + "/api/user/logout")
     })
 public class LoginFilter implements Filter {
   private final List<String> exclusions = new ArrayList<>();
@@ -42,7 +41,7 @@ public class LoginFilter implements Filter {
       if (session == null || session.getAttribute("loginUser") == null) {
         // 判断是否为ajax请求
         if (req.getHeader("x-requested-with") != null) {
-          ServletUtils.toJson(resp, new ApiResult<>(403, "登录过期，请重新登录。"));
+          ServletUtils.failure(resp, EnumApiResultCode.USER_NOT_LOGGED_IN);
         } else {
           ServletUtils.forward(req, resp, "/user/login");
         }

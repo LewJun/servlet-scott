@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/** @author huiye */
 @WebServlet("/api/emp/delete")
 public class EmpDeleteController extends BaseController {
   private static final long serialVersionUID = -682261820632786092L;
@@ -25,6 +26,6 @@ public class EmpDeleteController extends BaseController {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     empService.delete(Integer.valueOf(req.getParameter("id")));
-    ServletUtils.toJson(resp);
+    ServletUtils.success(resp);
   }
 }

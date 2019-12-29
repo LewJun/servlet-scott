@@ -1,6 +1,5 @@
 package com.example.lewjun.modules.emp.controller;
 
-import com.example.lewjun.base.ApiResult;
 import com.example.lewjun.base.BaseController;
 import com.example.lewjun.modules.emp.model.Emp;
 import com.example.lewjun.modules.emp.service.EmpService;
@@ -14,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
-/** 查询Scott */
+/**
+ * 查询Scott
+ *
+ * @author huiye
+ */
 @WebServlet("/api/emp/search")
 public class EmpSearchController extends BaseController {
   private static final long serialVersionUID = -7115223267378371581L;
@@ -36,6 +39,6 @@ public class EmpSearchController extends BaseController {
       empCollection = empService.findByName(keywords);
     }
 
-    ServletUtils.toJson(resp, new ApiResult<>(empCollection));
+    ServletUtils.success(resp, empCollection);
   }
 }
