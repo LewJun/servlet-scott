@@ -84,7 +84,6 @@
             data: {
                 id: id
             },
-            dataType: "json",
             success: function (ret) {
                 if (ret.code === 0) {
                     queryByKeywords();

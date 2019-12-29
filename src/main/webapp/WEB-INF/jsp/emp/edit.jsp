@@ -55,7 +55,6 @@
             type: "POST",
             url: "api/emp/edit",
             data: $("#frm-emp-detail").serialize(),
-            dataType: "json",
             success: function (ret) {
                 console.log(ret);
                 if (ret.code === 0) {

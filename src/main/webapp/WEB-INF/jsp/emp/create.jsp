@@ -43,7 +43,6 @@
             type: "POST",
             url: "api/emp/create",
             data: $("#frm-emp-detail").serialize(),
-            dataType: "json",
             success: function (ret) {
                 if (ret.code === 0) {
                     window.location.href = "api/emp/index";
