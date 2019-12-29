@@ -1,51 +1,54 @@
 package com.example.lewjun.base;
 
-public class ApiResult<T> {
-  private T data;
-  private int code = 0;
-  private String msg = "ok";
+import java.io.Serializable;
 
-  public ApiResult() {}
+/** @author huiye */
+public class ApiResult implements Serializable {
+  private static final long serialVersionUID = -1779439177783657300L;
+  private int code;
+  private String msg;
+  private Object data;
 
-  public ApiResult(int code, String msg) {
-    this.code = code;
-    this.msg = msg;
+  private ApiResult() {}
+
+  private ApiResult(EnumApiResultCode apiResultCode) {
+    setResultCode(apiResultCode);
   }
 
-  public ApiResult(T data) {
-    this();
-    this.data = data;
-    if (data == null) {
-      err();
-    }
+  public static ApiResult success(Object data) {
+    ApiResult apiResult = new ApiResult(EnumApiResultCode.SUCCESS);
+    apiResult.setData(data);
+    return apiResult;
   }
 
-  private void err() {
-    code = -1;
-    msg = "err";
+  public static ApiResult success() {
+    return new ApiResult(EnumApiResultCode.SUCCESS);
   }
 
-  public T getData() {
-    return data;
+  public static ApiResult failure(EnumApiResultCode apiResultCode) {
+    ApiResult apiResult = new ApiResult();
+    apiResult.setResultCode(apiResultCode);
+    return apiResult;
   }
 
-  public void setData(T data) {
-    this.data = data;
+  private void setResultCode(EnumApiResultCode apiResultCode) {
+    code = apiResultCode.getCode();
+    msg = apiResultCode.getMsg();
   }
 
   public int getCode() {
     return code;
   }
 
-  public void setCode(int code) {
-    this.code = code;
-  }
-
   public String getMsg() {
     return msg;
   }
 
-  public void setMsg(String msg) {
-    this.msg = msg;
+  public Object getData() {
+    return data;
+  }
+
+  public void setData(Object data) {
+    this.data = data;
   }
 }
