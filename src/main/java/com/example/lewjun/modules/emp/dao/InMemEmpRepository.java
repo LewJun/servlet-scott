@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/** @author huiye */
 public class InMemEmpRepository implements EmpRepository {
 
   @Override
@@ -74,8 +75,11 @@ public class InMemEmpRepository implements EmpRepository {
 
   @Override
   public Emp get(Integer pk) {
-    for (Emp entity : EmpRepo.LIST)
-        if (entity.getId().equals(pk)) return entity;
+    for (Emp entity : EmpRepo.LIST) {
+      if (entity.getId().equals(pk)) {
+        return entity;
+      }
+    }
     return new Emp();
   }
 
