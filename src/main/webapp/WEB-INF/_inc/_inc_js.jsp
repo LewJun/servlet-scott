@@ -28,15 +28,9 @@
                 const jsonData = JSON.parse(res);
                 const msg = jsonData.msg;
                 const code = jsonData.code;
-                if (code === 403) {
+                if (code === 2001) {
                     alert(msg);
                     window.location.href = "api/user/login";
-                } else if (code === 404) {
-                    alert(msg);
-                } else if (code === 504) {
-                    alert(msg);
-                } else if (code === 500) {
-                    alert(msg);
                 } else {
                     //正常情况就不统一处理了
                 }
