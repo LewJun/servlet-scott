@@ -24,7 +24,10 @@
            id="input-keywords">
     <a class="w3-btn w3-green" onclick="queryByKeywords()">Search</a>
     <a href="api/emp/create" class="w3-btn w3-blue w3-margin">Create</a>
-    <a href="api/user/logout" class="w3-btn w3-red w3-margin">Logout</a>
+    <span>hello, ${loginUser}
+        <a href="api/user/logout" class="w3-btn w3-red w3-margin">Logout</a>
+    </span>
+
     <h1>Emp List</h1>
     <table class="w3-table-all w3-hoverable" id="emp-list">
         <tr class="w3-green">
