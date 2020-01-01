@@ -5,6 +5,7 @@ import com.example.lewjun.base.BaseModel;
 import java.io.Serializable;
 import java.util.Date;
 
+/** @author huiye */
 public class Emp extends BaseModel<Integer> implements Serializable {
   private static final long serialVersionUID = -313826846973561454L;
 

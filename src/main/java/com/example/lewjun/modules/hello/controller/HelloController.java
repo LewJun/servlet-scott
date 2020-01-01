@@ -10,7 +10,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// 使用WebServlet声明该类是一个Servlet
+/**
+ * 使用WebServlet声明该类是一个Servlet
+ *
+ * @author huiye
+ */
 @WebServlet("/hello")
 public class HelloController extends BaseController {
   private static final long serialVersionUID = 2656225472432421109L;

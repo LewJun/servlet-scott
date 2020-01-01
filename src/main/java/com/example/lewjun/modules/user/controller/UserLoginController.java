@@ -1,19 +1,23 @@
 package com.example.lewjun.modules.user.controller;
 
+import com.example.lewjun.base.BaseController;
 import com.example.lewjun.base.EnumApiResultCode;
 import com.example.lewjun.utils.ServletUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/** 登录 */
+/**
+ * 登录
+ *
+ * @author huiye
+ */
 @WebServlet("/api/user/login")
-public class UserLoginController extends HttpServlet {
+public class UserLoginController extends BaseController {
   private static final long serialVersionUID = -1667693488908540242L;
 
   /**
