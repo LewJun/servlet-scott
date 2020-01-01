@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /** @author huiye */
-public abstract class BaseServiceImpl<T extends BaseModel, PK>
+public abstract class BaseServiceImpl<T extends BaseModel<PK>, PK>
     extends BaseReadOnlyServiceImpl<T, PK> implements BaseService<T, PK> {
 
   @Override
@@ -12,8 +12,9 @@ public abstract class BaseServiceImpl<T extends BaseModel, PK>
     repository.update(t);
   }
 
+  @SafeVarargs
   @Override
-  public void add(T... ts) {
+  public final void add(T... ts) {
     add(Arrays.asList(ts));
   }
 
@@ -32,8 +33,9 @@ public abstract class BaseServiceImpl<T extends BaseModel, PK>
     repository.remove(pk);
   }
 
+  @SafeVarargs
   @Override
-  public void remove(PK... pks) {
+  public final void remove(PK... pks) {
     remove(Arrays.asList(pks));
   }
 

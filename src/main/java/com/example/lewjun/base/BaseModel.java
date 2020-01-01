@@ -2,6 +2,7 @@ package com.example.lewjun.base;
 
 import java.io.Serializable;
 
+/** @author huiye */
 public abstract class BaseModel<T> implements Serializable {
   private static final long serialVersionUID = 4570303070892228190L;
   private T id;

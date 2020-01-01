@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collection;
 
 /** @author huiye */
-public abstract class BaseReadOnlyServiceImpl<T extends BaseModel, PK>
+public abstract class BaseReadOnlyServiceImpl<T extends BaseModel<PK>, PK>
     implements BaseReadOnlyService<T, PK> {
   protected static final Logger LOGGER = LoggerFactory.getLogger(BaseReadOnlyServiceImpl.class);
   BaseRepository<T, PK> repository;

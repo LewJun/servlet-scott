@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServlet;
 
+/** @author huiye */
 public abstract class BaseController extends HttpServlet {
 
   protected static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
