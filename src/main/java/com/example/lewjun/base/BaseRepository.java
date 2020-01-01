@@ -2,7 +2,8 @@ package com.example.lewjun.base;
 
 import java.util.List;
 
-public interface Repository<T extends BaseModel, PK> extends ReadOnlyRepository<T, PK> {
+/** @author huiye */
+public interface BaseRepository<T extends BaseModel, PK> extends BaseReadOnlyRepository<T, PK> {
   void add(T t);
 
   void add(T... ts);
