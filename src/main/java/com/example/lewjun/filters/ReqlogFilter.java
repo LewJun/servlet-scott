@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Enumeration;
 
-/** 请求日志过滤器 */
+/**
+ * 请求日志过滤器
+ *
+ * @author huiye
+ */
 @WebFilter(urlPatterns = {"/api/*"})
 public class ReqlogFilter implements Filter {
   private static final Logger LOGGER = LoggerFactory.getLogger(ReqlogFilter.class);
@@ -20,9 +24,9 @@ public class ReqlogFilter implements Filter {
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
     LOGGER.info("init");
-    Enumeration initParameterNames = filterConfig.getInitParameterNames();
+    Enumeration<String> initParameterNames = filterConfig.getInitParameterNames();
     while (initParameterNames.hasMoreElements()) {
-      String initParameterName = (String) initParameterNames.nextElement();
+      String initParameterName = initParameterNames.nextElement();
       LOGGER.debug("{}: {}", initParameterName, filterConfig.getInitParameter(initParameterName));
     }
   }
