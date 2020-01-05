@@ -189,7 +189,7 @@
     }
 
     function queryByEmpId(id, callback) {
-        w3.getHttpObject("api/emp/search/id?id=" + id, callback);
+        $.getJSON("api/emp/search/id?id=" + id, callback)
     }
 
     queryByKeywords();
@@ -198,7 +198,7 @@
      * 根据关键字搜索
      */
     function queryByKeywords() {
-        w3.getHttpObject("api/emp/search?keywords=" + $("#input-keywords").val(),
+        $.getJSON("api/emp/search?keywords=" + $("#input-keywords").val(),
             function (apiResult) {
                 const code = apiResult.code;
                 const data = apiResult.data;
