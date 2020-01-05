@@ -26,30 +26,24 @@ public class EmpEditController extends BaseController {
   }
 
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    req.setAttribute("id", req.getParameter("id"));
-    ServletUtils.forward(req, resp, "/emp/edit");
-  }
-
-  @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    int id = Integer.parseInt(req.getParameter("id"));
-    Emp emp = new Emp();
-    emp.setId(id);
-    emp.setEname(req.getParameter("ename"));
-    emp.setJob(req.getParameter("job"));
-    emp.setMgr(Integer.valueOf(req.getParameter("mgr")));
     try {
+      Emp emp = new Emp();
+
+      emp.setId(Integer.parseInt(req.getParameter("id")));
+      emp.setEname(req.getParameter("ename"));
+      emp.setJob(req.getParameter("job"));
+      emp.setMgr(Integer.valueOf(req.getParameter("mgr")));
       emp.setHiredate(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("hiredate")));
+      emp.setDeptno(Integer.valueOf(req.getParameter("deptno")));
+
+      empService.update(emp);
     } catch (ParseException e) {
       LOGGER.error("error", e);
       ServletUtils.failure(resp, EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
       return;
     }
-    emp.setDeptno(Integer.valueOf(req.getParameter("deptno")));
-    empService.update(emp);
 
     ServletUtils.success(resp);
   }

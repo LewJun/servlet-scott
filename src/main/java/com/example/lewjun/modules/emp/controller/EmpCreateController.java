@@ -26,31 +26,26 @@ public class EmpCreateController extends BaseController {
     empService = new EmpServiceImpl();
   }
 
-  /** 进入创建界面 */
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    ServletUtils.forward(req, resp, "/emp/create");
-  }
-
   /** 处理创建请求 */
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    Emp emp = new Emp();
-    emp.setId(Integer.parseInt(req.getParameter("id")));
-    emp.setEname(req.getParameter("ename"));
-    emp.setJob(req.getParameter("job"));
-    emp.setMgr(Integer.valueOf(req.getParameter("mgr")));
     try {
+      Emp emp = new Emp();
+
+      emp.setId(Integer.parseInt(req.getParameter("id")));
+      emp.setEname(req.getParameter("ename"));
+      emp.setJob(req.getParameter("job"));
+      emp.setMgr(Integer.valueOf(req.getParameter("mgr")));
       emp.setHiredate(new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("hiredate")));
+      emp.setDeptno(Integer.valueOf(req.getParameter("deptno")));
+
+      empService.add(emp);
     } catch (ParseException e) {
       LOGGER.error("error", e);
       ServletUtils.failure(resp, EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
       return;
     }
-    emp.setDeptno(Integer.valueOf(req.getParameter("deptno")));
-    empService.add(emp);
 
     ServletUtils.success(resp);
   }
