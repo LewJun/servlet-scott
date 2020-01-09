@@ -165,17 +165,26 @@
 
     function showDetailEmpModal(id) {
         queryByEmpId(id, function (apiResult) {
-            w3.displayObject("frm-emp", apiResult.data);
-            showEmpModal(false);
+            if (apiResult.code === 0) {
+                w3.displayObject("frm-emp", apiResult.data);
+                showEmpModal(false);
+            } else {
+                alert(apiResult.msg)
+            }
         });
     }
 
     function showEditEmpModal(id) {
         queryByEmpId(id, function (apiResult) {
-            w3.displayObject("frm-emp", apiResult.data);
-            showEmpModal(true);
-            $("#opr").val(0);
-        });
+                if (apiResult.code === 0) {
+                    w3.displayObject("frm-emp", apiResult.data);
+                    showEmpModal(true);
+                    $("#opr").val(0);
+                } else {
+                    alert(apiResult.msg)
+                }
+            }
+        );
     }
 
     function showEmpModal(isShowBtnSubmit) {
@@ -189,7 +198,15 @@
     }
 
     function queryByEmpId(id, callback) {
-        $.getJSON("api/emp/search/id?id=" + id, callback)
+        $.ajax({
+            type: "GET",
+            url: "api/emp/search/id?id=" + id,
+            success: callback,
+            error: function (ret) {
+                console.log(ret);
+                alert(ret.msg)
+            }
+        });
     }
 
     queryByKeywords();
@@ -198,17 +215,22 @@
      * 根据关键字搜索
      */
     function queryByKeywords() {
-        $.getJSON("api/emp/search?keywords=" + $("#input-keywords").val(),
-            function (apiResult) {
-                const code = apiResult.code;
-                const data = apiResult.data;
+        $.ajax({
+            type: "GET",
+            url: "api/emp/search?keywords=" + $("#input-keywords").val(),
+            success: function (ret) {
+                const code = ret.code;
+                const data = ret.data;
                 if (code >= 0 && data && data.length > 0) {
-                    w3.displayObject("emp-list", apiResult);
+                    w3.displayObject("emp-list", ret);
                     w3.removeClass("#emp-data", "w3-hide");
                 } else {
                     w3.addClass("#emp-data", "w3-hide");
                 }
-            });
+            }, error: function (ret) {
+                alert(ret.msg)
+            }
+        });
     }
 
     function remove(id, ename) {
