@@ -43,7 +43,7 @@ public class EmpCreateController extends BaseController {
       empService.add(emp);
     } catch (ParseException e) {
       LOGGER.error("error", e);
-      ServletUtils.failure(resp, EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
+      ServletUtils.failure(EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
       return;
     }
 

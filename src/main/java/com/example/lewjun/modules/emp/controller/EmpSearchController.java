@@ -39,6 +39,6 @@ public class EmpSearchController extends BaseController {
       empCollection = empService.findByName(keywords);
     }
 
-    ServletUtils.success(resp, empCollection);
+    ServletUtils.success(empCollection);
   }
 }

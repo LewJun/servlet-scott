@@ -41,10 +41,10 @@ public class EmpEditController extends BaseController {
       empService.update(emp);
     } catch (ParseException e) {
       LOGGER.error("error", e);
-      ServletUtils.failure(resp, EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
+      ServletUtils.failure(EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
       return;
     }
 
-    ServletUtils.success(resp);
+    ServletUtils.success();
   }
 }

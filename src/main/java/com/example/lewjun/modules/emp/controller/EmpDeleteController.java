@@ -26,6 +26,6 @@ public class EmpDeleteController extends BaseController {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     empService.remove(Integer.valueOf(req.getParameter("id")));
-    ServletUtils.success(resp);
+    ServletUtils.success();
   }
 }

@@ -25,6 +25,6 @@ public class EmpSearchByIdController extends BaseController {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     int id = Integer.parseInt(req.getParameter("id"));
     LOGGER.info("id = {}", id);
-    ServletUtils.success(resp, empService.get(id));
+    ServletUtils.success(empService.get(id));
   }
 }
