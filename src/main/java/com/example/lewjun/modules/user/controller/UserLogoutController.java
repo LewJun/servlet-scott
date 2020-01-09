@@ -25,6 +25,6 @@ public class UserLogoutController extends BaseController {
     HttpSession session = req.getSession();
     session.removeAttribute("loginUser");
     session.invalidate();
-    ServletUtils.forward(req, resp, "/user/login");
+    ServletUtils.forward("/user/login");
   }
 }

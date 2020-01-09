@@ -31,7 +31,7 @@ public class UserLoginController extends BaseController {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    ServletUtils.forward(req, resp, "user/login");
+    ServletUtils.forward("user/login");
   }
 
   /**
@@ -51,9 +51,9 @@ public class UserLoginController extends BaseController {
     if ("admin".equals(username) && "123456".equals(password)) {
       HttpSession session = req.getSession();
       session.setAttribute("loginUser", username);
-      ServletUtils.success(resp);
+      ServletUtils.success();
     } else {
-      ServletUtils.failure(resp, EnumApiResultCode.USER_LOGIN_FAIL);
+      ServletUtils.failure(EnumApiResultCode.USER_LOGIN_FAIL);
     }
   }
 }
