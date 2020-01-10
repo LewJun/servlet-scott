@@ -6,6 +6,7 @@ import com.example.lewjun.modules.emp.model.Emp;
 import com.example.lewjun.modules.emp.service.EmpService;
 import com.example.lewjun.modules.emp.service.EmpServiceImpl;
 import com.example.lewjun.utils.ServletUtils;
+import com.example.lewjun.exception.BuzException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,8 +42,7 @@ public class EmpEditController extends BaseController {
       empService.update(emp);
     } catch (ParseException e) {
       LOGGER.error("error", e);
-      ServletUtils.failure(EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
-      return;
+      throw new BuzException(EnumApiResultCode.PARAM_DATA_FORMAT_INVALID);
     }
 
     ServletUtils.success();
