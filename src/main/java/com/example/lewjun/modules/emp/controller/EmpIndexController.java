@@ -2,7 +2,6 @@ package com.example.lewjun.modules.emp.controller;
 
 import com.example.lewjun.base.BaseController;
 import com.example.lewjun.utils.ServletUtils;
-import com.example.lewjun.utils.WebUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +21,6 @@ public class EmpIndexController extends BaseController {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    LOGGER.info("req==========={}", req);
-    LOGGER.info("resp==========={}", resp);
-    LOGGER.info("WebUtils.getReq==========={}", WebUtils.getReq());
-    LOGGER.info("WebUtils.getResp==========={}", WebUtils.getResp());
     ServletUtils.forward("/emp/index");
   }
 }
